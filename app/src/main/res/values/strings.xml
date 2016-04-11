@@ -1,6 +1,11 @@
 <resources>
+
+    <string name="base_braodwas_filer">junior.com.formation.</string>
+
     <string name="app_name">Formation</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_secon">SeconActivity</string>
+    <string name="title_activity_third">ThirdActivity</string>
 </resources>
