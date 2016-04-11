@@ -11,6 +11,13 @@ public class ThirdActivity extends Activity {
 
     TextView myTextView;
 
+    /*
+    EXTRA_TEXT and his value will be accessible from everywhere in the project
+    public : the variable will be accessible from everywhere
+    static : don't need to instantiate MainActivity to get the EXTRA_VALUE's value
+    final : we can't change the value of EXTRA_VALUE
+     */
+
     public static final String EXTRA_TEXT = "text";
 
     @Override
@@ -20,7 +27,13 @@ public class ThirdActivity extends Activity {
 
         myTextView = (TextView) findViewById(R.id.my_textview);
 
-        String value = getIntent().getExtras().getString(MainActivity.EXTRA_VALUE);
+        /*
+        Get the key from MainActivity
+         */
+
+        String key = MainActivity.EXTRA_VALUE;
+
+        String value = getIntent().getExtras().getString(key);
 
         myTextView.setText(value);
 
