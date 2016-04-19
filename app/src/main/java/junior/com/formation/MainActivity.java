@@ -55,31 +55,11 @@ public class MainActivity extends Activity  {
             @Override
             public void onClick(View v) {
 
-                /*
-                Call for the on click event on the my_button Button
-                 */
+                startThirdActivity_broadcastreceiver();
 
-                /*
-                Intent object : An Intent is exactly what it describes. It's an "intention" to do an action.
-                An Intent is basically a message to say you did or want something to happen.
-                Depending on the intent, apps might be listening for it and will react accordingly.
-                 */
+                startSecondActivity_broadcastreceiverAndListview();
 
-                Intent intent = new Intent(MainActivity.this, ThirdActivity.class);
-                intent.putExtra(EXTRA_VALUE, "From mainactivity");
-
-                /*
-                We start another activity : ThirdActivity.class
-                With a special intent
-                 */
-
-                startActivity(intent);
-
-                /*
-                We finish the activity
-                 */
-
-                finish();
+                //finish();
             }
         });
 
@@ -88,16 +68,52 @@ public class MainActivity extends Activity  {
 
     }
 
+    private void startSecondActivity_broadcastreceiverAndListview(){
+        Intent intent = new Intent(MainActivity.this, SeconActivity.class);
+        startActivity(intent);
+    }
+
+    private void startThirdActivity_broadcastreceiver(){
+
+        /*
+        Call for the on click event on the my_button Button
+        */
+
+        /*
+        Intent object : An Intent is exactly what it describes. It's an "intention" to do an action.
+        An Intent is basically a message to say you did or want something to happen.
+        Depending on the intent, apps might be listening for it and will react accordingly
+        */
+
+        Intent intent = new Intent(MainActivity.this, ThirdActivity.class);
+
+        intent.putExtra(EXTRA_VALUE, "From mainactivity");
+
+        /*
+        We start another activity : ThirdActivity.class
+        With a special intent
+        */
+
+        startActivity(intent);
+
+
+
+
+
+        /*
+        We finish the activity
+        */
+
+    }
+
     private void setUpBroadcast(){
 
         broadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-
                 /*
                 Call for when we receive the broadcast from sendBroast(); whit the correct intent filter
-                 */
-
+                */
                 String text = intent.getStringExtra(ThirdActivity.EXTRA_TEXT);
                 textView.setText(text);
             }
@@ -113,20 +129,19 @@ public class MainActivity extends Activity  {
 
 
     @Override
-    protected void onStart(){
-        super.onStart();
-    }
-
-    @Override
     protected void onResume() {
         super.onResume();
 
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
-
 
         /*
         We unregister the broadcast on the onDestroy, at the end of the activity's lifecycle

@@ -25,6 +25,7 @@ public class ThirdActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_third);
 
+
         myTextView = (TextView) findViewById(R.id.my_textview);
 
         /*
@@ -33,9 +34,10 @@ public class ThirdActivity extends Activity {
 
         String key = MainActivity.EXTRA_VALUE;
 
-        String value = getIntent().getExtras().getString(key);
-
-        myTextView.setText(value);
+        if ( getIntent().hasCategory(key) ){
+            String value = getIntent().getExtras().getString(key);
+            myTextView.setText(value);
+        }
 
         Button but = (Button) findViewById(R.id.my_button);
         but.setOnClickListener(new View.OnClickListener() {
